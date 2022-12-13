@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/********************************************************************
+ * TABLE OF CONTENTS
+ * ===================
+ * 1. GENERAL STYLES
+ * 2. GAME HEADER STYLES
+ * 3. GAME STYLES
+ * ===================
+ ********************************************************************/
+
+/* 1. GENERAL STYLES */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Fredoka One', cursive;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.button {
+  appearance: none;
+  background-color: white;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: var(--gray) 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  margin: 0 auto;
+  outline: none;
+  padding: .75rem 2rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover {
+  background-color: var(--yellow);
+  box-shadow: var(--orange) 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button:active {
+  transform: scale(1.025);
+}
+
+:root {
+  --player-height: 15vw;
+  --landing-position: 65vw;
+  --yellow: #FFC229;
+  --orange: #FF6314;
+  --gray: #ADCFFF;
+}
+
+/* 2. GAME HEADER STYLES */
+.hp {
+  height: 3vw;
+  width: 40vw;
+  border: 5px solid white;
+  border-radius: 40em;
+}
+#hp2 {
+  margin-left: auto;
+}
+.blood {
+  height: 100%;
+  width: 100%;
+  background-color: #FFC229;
+  border-radius: 40em;
+  transition: width 3s linear;
+}
+
+/* 3. GAME STYLES */
+body {
+  display: grid;
+}
+
+#start-page {
+  display: flex;
+  flex-flow: column;
+  gap: 1em;
+  justify-content: center;
+  background: #ffffff7f;
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  opacity: 100;
+  transition: opacity 500ms ease-out;
+}
+#instruction {
+  display: none;
+  padding: 0 10vw;
+  text-align: center;
+}
+
+.game-container {
+  overflow: hidden;
+  grid-column: 1;
+  grid-row: 1;
+  width: 100vw;
+  height: 60vw;
+  background: url("../images/background.jpg");
+  background-size: cover;
+  background-position: center;
+  padding: 5vw;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.game-header {
+  display: flex;
+  justify-content: space-between;
+}
+.playground {
+  position: relative;
+  height: 40vw;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+}
+#ball {
+  position: absolute;
+  visibility: hidden;
+  width: calc(var(--player-height) / 3);
+}
+#ball.left {
+  left: var(--player-height);
+  bottom: calc(var(--player-height));
+  animation: right-to-left-x 1s linear, right-to-left-y 1s;
+}
+#ball.right {
+  left: calc(100% - var(--player-height) * 4 / 3);
+  bottom: calc(var(--player-height));
+  animation: left-to-right-x 1s linear, left-to-right-y 1s;
+}
+@keyframes right-to-left-x {
+  from {
+    left: calc(100% - var(--player-height) * 4 / 3);
+  }
+  to {
+    left: calc(100% - var(--player-height) * 4 / 3 - var(--landing-position));
+  }
+}
+@keyframes right-to-left-y {
+  0% {
+    bottom: calc(var(--player-height));
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  50% {
+    bottom: 35vw;
+    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+  100% {
+    bottom: 0;
+  }
+}
+@keyframes left-to-right-x {
+  from {
+    left: var(--player-height);
+  }
+  to {
+    left: calc(var(--player-height) + var(--landing-position));
+  }
+}
+@keyframes left-to-right-y {
+  0% {
+    bottom: calc(var(--player-height));
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+  50% {
+    bottom: 35vw;
+    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+.target div {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 15px solid red;
+  margin: 0 calc(var(--player-height) / 2 - 5px);
+  transform: rotate3d(0, 1, 0, 0deg);
+  animation: rotate-target 1s infinite;
+}
+@keyframes rotate-target {
+  to {
+    transform: rotate3d(0, 1, 0, 180deg);
+  }
+}
+
+.wall {
+  position: absolute;
+  left: calc(50% - 0.5em);
+  background-color: burlywood;
+  height: calc(var(--player-height) * 1.5);
+  width: 1em;
+}
+#p1, #p2 {
+  pointer-events: none;
+  height: var(--player-height);
+  width: var(--player-height);
+}
+#p1.standard {
+  background-image: url(../images/cat-standard.png);
+  background-size: cover;
+}
+#p1.fight {
+  background-image: url(../images/cat-fight.png);
+  background-size: cover;
+  animation: shake 0.5s infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(1deg); }
+  20% { transform: translate(-2px, 0px) rotate(-1deg); }
+  30% { transform: translate(2px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(-1deg); }
+  50% { transform: translate(-1px, 2px) rotate(1deg); }
+  60% { transform: translate(-2px, 1px) rotate(0deg); }
+  70% { transform: translate(2px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+#p1.cry {
+  position: relative;
+  background-image: url(../images/cat-cry-1.png);
+  background-size: cover;
+}
+#p1.cry::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url(../images/cat-cry-2.png);
+  background-size: cover;
+  animation: p1-crying 1s 3;
+  -webkit-animation-timing-function: steps(1, end);
+  -moz-animation-timing-function: steps(1, end);
+  -ms-animation-timing-function: steps(1, end);
+  -o-animation-timing-function: steps(1, end);
+  animation-timing-function: steps(1, end);
+}
+@keyframes p1-crying {
+  0% {
+    opacity: 100;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+#p2.standard {
+  background-image: url(../images/dog-standard.png);
+  background-size: cover;
+}
+#p2.fight {
+  background-image: url(../images/dog-fight.png);
+  background-size: cover;
+  animation: shake 0.5s infinite;
+}
+#p2.cry {
+  position: relative;
+  background-image: url(../images/dog-cry-1.png);
+  background-size: cover;
+}
+#p2.cry::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url(../images/dog-cry-2.png);
+  background-size: cover;
+  animation: p1-crying 1s 5;
+  -webkit-animation-timing-function: steps(1, end);
+  -moz-animation-timing-function: steps(1, end);
+  -ms-animation-timing-function: steps(1, end);
+  -o-animation-timing-function: steps(1, end);
+  animation-timing-function: steps(1, end);
+}
+@keyframes p1-crying {
+  0% {
+    opacity: 100;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.target, .force, .player {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.force progress {
+  visibility: hidden;
+  width: calc(var(--player-height) - 1em);
+  margin: 0 0.5em;
+}
+#f2 {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);  
+}
+
+/********************************************************************
+* CITATION
+* ===================
+* [.game-container] background image: https://www.freepik.com/free-vector/blank-nature-park-landscape-scene-daytime_16879862.htm#query=cartoon%20landscape&position=7&from_view=keyword
+* images: Image by catalyststuff on Freepik
+* [#ball] ball image: https://www.flaticon.com/free-icon/beach-ball_3012458?term=ball&page=1&position=6&page=1&position=6&related_id=3012458&origin=search
+* ===================
+/********************************************************************

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat vs Dog</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script src="js/script.js"></script>
+</head>
+<body>
+  <div id="start-page">
+    <div id="instruction">Click and hold mouse over character on their turn<br>Power increases until mouse release<br>Release mouse to throw the ball</div>
+    <button class="button" onclick="startGame()">Start Game</button>
+    <button class="button" onclick="showInstr(this)">How to play</button>
+  </div>
+  <div class="game-container">
+    <div class="game-header">
+      <div class="hp"><div id="hp1" class="blood"></div></div>
+      <div class="hp"><div id="hp2" class="blood"></div></div>
+    </div>
+    <div class="playground">
+      <img id="ball" class="left" src="images/ball.png" draggable="false" alt="This is the ball.">
+      <div class="target">
+        <div id="t1"></div>
+        <div id="t2"></div>
+      </div>
+      <div class="force">
+        <progress id="f1" value="0" max="100"></progress>
+        <progress id="f2" value="0" max="100"></progress>
+      </div>
+      <div class="player">
+        <div id="p1" class="standard" onmousedown="applyForce(1);" onmouseup="applyThrow(1)"></div>
+        <div class="wall"></div>
+        <div id="p2" class="standard" onmousedown="applyForce(2);" onmouseup="applyThrow(2)"></div>
+      </div>
+    </div></div>
+</body>
+</html>
