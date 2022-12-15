@@ -200,9 +200,9 @@ body {
   visibility: hidden;
   width: 0;
   height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 15px solid red;
+  border-left: 0.8vw solid transparent;
+  border-right: 0.8vw solid transparent;
+  border-top: 2.5vw solid red;
   margin: 0 calc(var(--player-height) / 2 - 5px);
   transform: rotate3d(0, 1, 0, 0deg);
   animation: rotate-target 1s infinite;
@@ -220,16 +220,16 @@ body {
   height: calc(var(--player-height) * 1.5);
   width: 1em;
 }
-#p1, #p2 {
+.p1, .p2 {
   pointer-events: none;
   height: var(--player-height);
   width: var(--player-height);
 }
-#p1.standard {
+.p1.standard {
   background-image: url(../images/cat-standard.png);
   background-size: cover;
 }
-#p1.fight {
+.p1.fight {
   background-image: url(../images/cat-fight.png);
   background-size: cover;
   animation: shake 0.5s infinite;
@@ -247,12 +247,12 @@ body {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
-#p1.cry {
+.p1.cry {
   position: relative;
   background-image: url(../images/cat-cry-1.png);
   background-size: cover;
 }
-#p1.cry::before {
+.p1.cry::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -275,21 +275,21 @@ body {
   }
 }
 
-#p2.standard {
+.p2.standard {
   background-image: url(../images/dog-standard.png);
   background-size: cover;
 }
-#p2.fight {
+.p2.fight {
   background-image: url(../images/dog-fight.png);
   background-size: cover;
   animation: shake 0.5s infinite;
 }
-#p2.cry {
+.p2.cry {
   position: relative;
   background-image: url(../images/dog-cry-1.png);
   background-size: cover;
 }
-#p2.cry::before {
+.p2.cry::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -310,6 +310,9 @@ body {
   50% {
     opacity: 0;
   }
+}
+.cry, .fight {
+  display: none;
 }
 
 .target, .force, .player {

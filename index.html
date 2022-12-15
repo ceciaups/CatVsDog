@@ -10,7 +10,11 @@
 </head>
 <body>
   <div id="start-page">
-    <div id="instruction">Click and hold mouse over character on their turn<br>Power increases until mouse release<br>Release mouse to throw the ball</div>
+    <div id="instruction">
+      <div>Click and hold mouse over character on their turn</div>
+      <div>Power increases until mouse release</div>
+      <div>Release mouse to throw the ball</div>
+    </div>
     <button class="button" onclick="startGame()">Start Game</button>
     <button class="button" onclick="showInstr(this)">How to play</button>
   </div>
@@ -30,9 +34,17 @@
         <progress id="f2" value="0" max="100"></progress>
       </div>
       <div class="player">
-        <div id="p1" class="standard" onmousedown="applyForce(1);" onmouseup="applyThrow(1)"></div>
+        <div id="p1">
+          <div class="p1 standard" onmousedown="applyForce(1);" onmouseup="applyThrow(1)"></div>
+          <div class="p1 cry" onmousedown="applyForce(1);" onmouseup="applyThrow(1)"></div>
+          <div class="p1 fight" onmousedown="applyForce(1);" onmouseup="applyThrow(1)"></div>
+        </div>
         <div class="wall"></div>
-        <div id="p2" class="standard" onmousedown="applyForce(2);" onmouseup="applyThrow(2)"></div>
+        <div id="p2">
+          <div class="p2 standard" onmousedown="applyForce(2);" onmouseup="applyThrow(2)"></div>
+          <div class="p2 cry" onmousedown="applyForce(2);" onmouseup="applyThrow(2)"></div>
+          <div class="p2 fight" onmousedown="applyForce(2);" onmouseup="applyThrow(2)"></div>
+        </div>
       </div>
     </div></div>
 </body>
