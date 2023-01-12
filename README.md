@@ -1,4 +1,5 @@
 # Cat vs Dog
+- Visit here: https://catvsdog.ceciaups.com/
 - Click and hold mouse over character on their turn
 - Power increases until mouse release
 - Release mouse to throw the ball
